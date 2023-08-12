@@ -1,0 +1,37 @@
+baseURL: ""
+languageCode: "en-us"
+title: "Dippi"
+icon: "static/img/wall.jpg"
+theme: "PaperMod"
+
+params: 
+  cover: 
+    linkFullImages: true
+
+  homeInfoParams:
+    Title: "Dippi Docs"
+    Content: "To generate your API KEY you can register here https://client.dippi.xyz and create your project."
+    
+
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/dippixyz"
+    - name: "twitter"
+      url: "https://twitter.com/dippixyz"
+    - name: "website"
+      url: "https://dippi.xyz"
+    
+
+  ShowBreadCrumbs: true
+
+  ShowReadingTime: true
+
+  ShowShareButtons: true
+
+  ShowPostNavLinks: true
+
+menu: 
+  main:
+    - name: "Home"
+      url: "/"
+      weight: 10

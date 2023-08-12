@@ -1,0 +1,356 @@
+---
+title: "SDK + React"
+date: 2023-08-11T15:31:44-06:00
+draft: false
+---
+
+
+# SDK ENG TUTORIAL
+
+Hello w0rld!
+
+Welcome to your friendly guide to using `@dippixyz/sdk`. Please {{contact us}} if you face any problems implementing!
+
+**Please note the following frequent issues before you begin:**
+
+1. This SDK is written in JS —you’ll need to run an Node version ≥ 18. This SDK uses fetch as a request manager.
+2. This SDK can be used both in your backend or your frontend!
+3. Need to keep users in the main site while they signup/sign in? We understand! To enable this for your site and your users we recommend you use the iFrame code provided ahead. Keep in mind you can always choose how to display our site.
+
+**Step 1**
+
+Go to our site: [client.dippi.xyz](http://client.dippi.xyz/). Once there you must create a project. That project will be loaded with all the necessary configurations to be used as rules when creating wallets for your users.
+
+<!-- ![Create Project](/static/img/site1.png) -->
+<!-- Show img /static/img/site1.png -->
+  <!-- <img src="/static/img/site1.jpg" alt="Site1" /> -->
+[![Site1](../../static/img/site1.jpg)](../../static/img/site1.jpg)
+
+You’ll find the following form next:
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96175a7b-9c01-4d78-8b9a-586b6439d0ac/Untitled.png)
+
+Here’s what you need to know about each of the fields:
+
+1. **App name**: Choose any name to identify the application you are registering.
+2. **Environments**: Decide if the user wallets will be generated in test net or main net.
+3. **Assigned to:**  Define the desired chain in which the w
+4. **Authentication Type**: Define the type of authentication that will be shown to your users when they signup/sign in with Dippi. They’ll have two options:
+    1. Email: the user will receive a confirmation email
+    2. SMS : the user will receive a OTP via SMS to confirm their account.
+5. **Generate API Token** : This will automatically generate an API Token for your app. You’ll use this API Token in the SDK as the requested credentials.
+
+Example:
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/129199e3-1e15-43ed-8b3a-5d73801769a1/Untitled.png)
+
+IMPORTANT: Once your project is created you’ll obtain an API Token and Application ID: make sure to store these safely —back them up and don’t lose them!
+
+Note: The `API Token`  can’t be recovered if lost. If you ever lose this, you’ll need to generate a new one. To create a new Token follow this guide: {{link}}
+
+**Step 2.**
+
+Once your `API Token` and `Application ID` are ready you can start using our SDK.
+
+The example provided below assumes that you are using **`React + Typescript`** as a framework for your frontend. ***As mentioned earlier the methods provided by the SDK can also be used in your backend***.
+
+1. Install the SDK. If you want to view the package in npm, click below: 
+    
+    [npm: @dippixyz/sdk](https://www.npmjs.com/package/@dippixyz/sdk)
+    
+    Open your project’s terminal and run this command: 
+    
+    ```jsx
+    npm i @dippixyz/sdk
+    ```
+    
+    1. Once the SDK is installed you can import it this way:
+    
+    ```jsx
+    const Dippi = require('@dippixyz/sdk');
+    ```
+    
+    1. We recommend creating an environment variable in your project (`.env`) or a separate file where you can store your credentials without exposing them in your code.
+        
+        *Assuming you have created a new .env file, you should get the following parameters:*
+        
+        ```jsx
+        DIPPI_API_TOKEN = <*YOUR_API_TOKEN*>
+        DIPPI_APPLICATION_ID = <*YOUR_APPLICATION_ID*>
+        DIPPI_URL = https://api.dippi.xyz 
+        ```
+        
+    
+    ***The `DIPPI_URL` parameter should always be the one in the example above.***
+    
+    1. Next we’ll create a new component which will contain the **‘Sign-in with Dippi’** button.
+    
+    *Example: create a new file in your components folder—*
+    
+    `/components/dippi.tsx`
+    
+    ```jsx
+    import React, { useState } from 'react';
+    const Dippi = require('@dippixyz/sdk');
+    
+    function DippiSignin() {
+        
+        return (
+            <div>
+    						<button style={{backgroundColor: 'white', borderRadius:5, borderColor:'white' , margin:4, padding:'5px 20px 5px 20px', border:1, boxShadow: '1px 2px 4px grey' }} >
+                    <img src="https://client.dippi.xyz/assets/img/logo.png" alt="Dippi Icon" style={{width:30, marginRight:4}}/>
+                    <span ><strong>Continue with Dippi</strong></span>
+                </button>        
+    				</div>
+        );
+    }
+    
+    export default DippiSignin;
+    ```
+    
+    Hooray! Your button should look like this:
+    
+    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/89c551f4-7492-424a-9799-2423b2879750/Untitled.png)
+    
+    ***Bear in mind that this is just the basic component. You can build it up and enhance it with what you learn throughout this tutorial.***
+    
+    1. Once the SDK is imported you can create the `DippiClient` with the following settings:
+        
+        
+        ```jsx
+        const DippiClient = new Dippi({
+        		appToken: process.env.DIPPI_API_TOKEN,
+            appId: process.env.DIPPI_APPLICATION_ID,
+            url: process.env.DIPPI_URL,
+            urlReturn: 'http://localhost:3002/dippi'
+        });
+        ```
+        
+        ***The `urlReturn` parameter is the URL of your project where the DippiClient will  return the responses to your requests.***
+        
+    
+    1. Create an asynchronous function called `initClientDippi()` that will be used to initialize the `DippiClient`:
+    
+    ```jsx
+    const initClientDippi = async () => {
+    		const { accessToken } = await DippiClient.auth.login();
+        DippiClient.setAuthToken(accessToken);
+    }
+    ```
+    
+     - The **`login()`** function returns an object containing an **`accessToken`** that is assigned to the **`accessToken`** variable. This is achieved by de-structuring the returned object.
+    
+    - Next, **`DippiClient.setAuthToken(accessToken)`** is used to set the access token on the Dippi client. This will allow the client to perform authenticated operations later on.
+    
+    1. Declare a function called `openIframeDippi()` which will set parameters of the iFrame  displayed to the user —such as size, margins, and other options:
+    
+    ```jsx
+    const openIframeDippi = async () => {
+    		await initClientDippi();
+        const { url } = await DippiClient.auth.getUrl();
+        const left = (window.innerWidth - 500) / 2;
+        const top = (window.innerHeight - 650) / 2;
+        const options = `toolbar=0,scrollbars=1,status=1,resizable=1,location=1,menuBar=0,width=500,height=650,top=${top},left=${left}`;
+        window.open(url, 'childWindow', options);
+        localStorage.removeItem('registration_complete');
+     };
+    ```
+    
+    ***Note that  `initClientDippi()` is implicit in this method and it will initialize the `DippiClient`. You will then obtain the URL to be displayed in the iFrame through the `getUrl()` method.***
+    
+    1. Let’s add the `openIframeDippi()` to the button in the previously created component. This will be executed with the onClick event.
+    
+    ```jsx
+    <button onClick={openIframeDippi} style={{backgroundColor: 'white', borderRadius:5, borderColor:'white' , margin:4, padding:'5px 20px 5px 20px', border:1, boxShadow: '1px 2px 4px grey' }} >
+    		<img src="https://client.dippi.xyz/assets/img/logo.png" alt="Dippi Icon" style={{width:30, marginRight:4}}/>
+        <span ><strong>Continue with Dippi</strong></span>
+    </button>
+    ```
+    
+    Great work! Let’s test the button and check for the modal. It should look like this:
+    
+    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/00f2da57-2c9e-4207-85e5-7e4993e01b10/Untitled.png)
+    
+    From this point forward everything becomes user experience: your site/app is ready to onboard and log in users through Dippi 🙌
+    
+    IMPORTANT: The credentials used in this modal ***are NOT*** the ones you used when registering on [client.dippi.xyz](http://client.dippi.xyz/) to create your project. *Again: these are credentials created by the user to be interact with your site.*
+    
+    Please refer to the users’ side of the process in this guide: {{A user’s guide to Dippi}}
+    
+
+**Step 3.**
+
+Now that the component is ready, you’ll manage the response obtained from Dippi once the user is done with the process:
+
+1. Are you using the code we provided earlier to set up an iFrame or floating window? Then you must define a `window.addEventListener`  which will expect the `window.opener.postMessage` message sent by Dippi
+    
+    
+    ```jsx
+    window.addEventListener('message', async (event) => {
+            
+    		const registration_complete = localStorage.getItem('registration_complete');       
+    
+        if (event.data.type == 'registration_complete' && !registration_complete && event.origin == 'https://client.dippi.xyz') {
+            // Verify that the origin of the event is from our official site.
+            // Save in local storage registration_complete = true
+            localStorage.setItem('registration_complete', 'true');
+    
+            const { redirectUrl, userId, walletAddress } = event.data;
+        }
+    
+    });
+    ```
+    
+
+In `event.data` you should expect an object like this:
+
+```jsx
+{ 
+	redirectUrl : "http://localhost:3002/dippi/success/0x7A61081Afd7354385CbE97c718djnflasb2Bd/cljrqklo0983nrp1bf9zzr1j5"
+	type : "registration_complete"
+	userId : "cljrqklo0983nrp1bf9zzr1j5"
+	walletAddress : "0x7A61081Afd7354385CbE97c718djnflasb2Bd"
+}
+```
+
+IMPORTANT: If you are not using the iFrame (instead obtaining a URL through the `DippiClient.auth.getUrl()` method) and get directed to our site, ***the action you will receive in response will be a redirection to a URL with the following structure:***
+
+`${returnUrl}/success/${wallet.address}/${userId}`
+
+Where `returnUrl` is the established parameter in the `DippiClient`, followed by `/success` —indicating that everything worked to spec: `wallet.address` will be the address for the generated wallet, and  `userId` the registered user identifier.
+
+Here’s how something like that would look like: 
+
+```jsx
+http://localhost:3002/dippi/success/0xa0c903C2756e7ceA093246346C249194701d7805/cljrp5uh30005rp1b3wifc4wr
+```
+
+*If an error occurs and you want to handle it, the URL will have the following structure:*
+
+`*${returnUrl}/error/${error}*`
+
+Ready? Extract the second parameter in this case and proceed.
+
+1. You can now obtain the complete user information to register it in your database and assume that their session has been initiated. To do this, define a new asynchronous method called `getUser()` which will obtain the users’ information:
+    
+    
+    ```jsx
+    const getUser = async (userId : string) => {
+    		await initClientDippi();
+        const user = await DippiClient.user.getProfile(userId);
+        console.log('user :::: >>>', user)
+    }
+    ```
+    
+    In the `window.addEventListener` one must add the call for the `getUser()` function after the `const { redirectUrl, userId, walletAddress } = event.data;` line.
+    
+    ***The complete method would look like this:***
+    
+    ```jsx
+    window.addEventListener('message', async (event) => {
+            
+    		const registration_complete = localStorage.getItem('registration_complete');       
+    
+        if (event.data.type == 'registration_complete' && !registration_complete && event.origin == 'https://client.dippi.xyz') {
+            // Verify that the origin of the event is from our official site.
+            // Save in local storage registration_complete = true
+            localStorage.setItem('registration_complete', 'true');
+    
+            const { redirectUrl, userId, walletAddress } = event.data;
+    				await getUser(userId); // Add getUser function
+        }
+    
+    });
+    ```
+    
+    The `await DippiClient.user.getProfile(userId)` method returns a response like this:
+    
+    ```jsx
+    {
+    	applicationId : "clj68i4fs0001qx1bxyb7abks"
+    	createdAt : "2023-07-06T17:30:00.277Z"
+    	email : "victor@dippi.xyz"
+    	id : "cljrfawno0009rp1bznxl8k2h"
+    	isActive : true
+    	isVerified : true
+    	lastLogin : null
+    	name : "victor+kjnasdlk2"
+    	password : "$argon2id$v=19$m=65536,t=3,p=4$Q3Nrs3SWfCIYoLOnj6fY3Q$or1LYlbWgf3uDfWW+7WrKP9r5D4/43U28eVWhQvS35w"
+    	phone : ""
+    	refreshToken : null
+    	updatedAt : "2023-07-06T17:30:21.794Z"
+    }
+    ```
+    
+
+***Once this information is received, you can use it as necessary in your application to start the users’ session.***
+
+1. The final component would look like this:
+
+```jsx
+import React, { useState } from 'react';
+const Dippi = require('@dippixyz/sdk');
+
+function DippiSignin() {
+
+		const DippiClient = new Dippi({
+				appToken: process.env.DIPPI_API_TOKEN,
+		    appId: process.env.DIPPI_APPLICATION_ID,
+		    url: process.env.DIPPI_URL,
+		    urlReturn: 'http://localhost:3002/dippi'
+		});
+
+    const initClientDippi = async () => {
+        const { accessToken } = await DippiClient.auth.login();
+        DippiClient.setAuthToken(accessToken);
+    }
+
+    const openIframeDippi = async () => {
+        
+        await initClientDippi();
+        const { url } = await DippiClient.auth.getUrl();
+        const left = (window.innerWidth - 500) / 2;
+        const top = (window.innerHeight - 650) / 2;
+        const options = `toolbar=0,scrollbars=1,status=1,resizable=1,location=1,menuBar=0,width=500,height=650,top=${top},left=${left}`;
+        window.open(url, 'childWindow', options);
+        localStorage.removeItem('registration_complete');
+    };
+
+    window.addEventListener('message', async (event) => {
+        
+        const registration_complete = localStorage.getItem('registration_complete');
+        
+        if (event.data.type == 'registration_complete' && !registration_complete && event.origin == 'https://client.dippi.xyz') {
+            // Verify that the origin of the event is from our official site.
+						// Save in local storage registration_complete = true
+            localStorage.setItem('registration_complete', 'true');
+
+            const { redirectUrl, userId, walletAddress } = event.data;
+            await getUser(userId);            
+        }
+
+    });
+
+    const getUser = async (userId : string) => {
+        await initClientDippi();
+        const user = await DippiClient.user.getProfile(userId);
+        console.log('user :::: >>>', user)
+    }
+
+    return (
+        <div>
+            <button style={{backgroundColor: 'white', borderRadius:5, borderColor:'white' , margin:4, padding:'5px 20px 5px 20px', border:1, boxShadow: '1px 2px 4px grey' }} onClick={openIframeDippi}>
+                <img src="https://client.dippi.xyz/assets/img/logo.png" alt="Dippi Icon" style={{width:30, marginRight:4}}/>
+                <span ><strong>Continue with Dippi</strong></span>
+            </button>
+        </div>
+        
+    );
+}
+
+export default DippiSignin;
+```
+
+### Voilá! Dippi and your app should work like magic now! 
+
+Thanks for following this tutorial. Got suggestions? Don’t hesitate and let us know 🤓
