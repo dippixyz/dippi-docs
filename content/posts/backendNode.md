@@ -9,7 +9,9 @@ draft: false
 ---
 # Backend API Documentation
 
-This document provides technical documentation for the backend API of your application. The backend is developed using Node.js and Express framework, and it comprises various routes that handle different functionalities such as user management, wallet operations, application handling, authentication, and more.
+This document provides **technical** documentation for the backend API of your application and can go in-depth. In case of looking for a quickstart, look at our [SDK + React guide]({{< ref "react" >}}).
+
+The backend is developed using Node.js and Express framework, and it comprises various routes that handle different functionalities such as user management, wallet operations, application handling, authentication, and more.
 
 ## **Introduction**
 
@@ -389,8 +391,8 @@ module.exports = {
 
 ```
 
-## Conclusion
+<!-- ## Conclusion
 
 This documentation provides an overview of the backend API routes and their corresponding functionalities, as well as the models responsible for handling various operations. Developers can refer to this documentation to understand how to interact with the backend API, manage users, applications, wallets, authentication, and more, while utilizing the `@dippixyz/sdk` library effectively.
 
-This document provides technical documentation for the backend API of your application. The backend is developed using Node.js and Express framework, and it comprises various routes that handle different functionalities such as user management, wallet operations, application handling, authentication, and more.
+This document provides technical documentation for the backend API of your application. The backend is developed using Node.js and Express framework, and it comprises various routes that handle different functionalities such as user management, wallet operations, application handling, authentication, and more. -->

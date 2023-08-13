@@ -8,9 +8,9 @@ draft: false
 #     caption: "This is the caption."
 ---
 
-# Documentation ReactNative + Expo
+# Documentation ReactNative + Expo: Dippi Sign-in
 
-# Technical Document: Understanding the React Native Code for Dippi Sign-i
+<!-- # Technical Document: Understanding the React Native Code for Dippi Sign-i -->
 
 ## Introduction
 

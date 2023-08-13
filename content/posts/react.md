@@ -4,7 +4,7 @@ date: 2023-08-11T15:31:44-06:00
 draft: false
 ---
 
-Welcome to your friendly guide to using `@dippixyz/sdk`. Please {{contact us}} if you face any problems implementing!
+Welcome to your friendly guide to using `@dippixyz/sdk` 🚀. Please [contact us](mail:hello@dippi.xyz) if you face any problems implementing!
 
 **Please note the following frequent issues before you begin:**
 
@@ -19,11 +19,12 @@ Go to our site: [client.dippi.xyz](http://client.dippi.xyz/). Once there you mus
 <!-- ![Create Project](/static/img/site1.png) -->
 <!-- Show img /static/img/site1.png -->
   <!-- <img src="/static/img/site1.jpg" alt="Site1" /> -->
-[![Site1](../../static/img/site1.jpg)](../../static/img/site1.jpg)
+<!-- [![Site1](../../static/img/site1.jpg)](../../static/img/site1.jpg) -->
+![Site 1](/img/site1.jpg)
 
 You’ll find the following form next:
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96175a7b-9c01-4d78-8b9a-586b6439d0ac/Untitled.png)
+![Site 2](/img/site2.png)
 
 Here’s what you need to know about each of the fields:
 
@@ -37,7 +38,7 @@ Here’s what you need to know about each of the fields:
 
 Example:
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/129199e3-1e15-43ed-8b3a-5d73801769a1/Untitled.png)
+![Site 3](/img/site3.png)
 
 IMPORTANT: Once your project is created you’ll obtain an API Token and Application ID: make sure to store these safely —back them up and don’t lose them!
 
@@ -105,7 +106,7 @@ The example provided below assumes that you are using **`React + Typescript`** a
     
     Hooray! Your button should look like this:
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/89c551f4-7492-424a-9799-2423b2879750/Untitled.png)
+    ![Site 4](/img/site4.png)
     
     ***Bear in mind that this is just the basic component. You can build it up and enhance it with what you learn throughout this tutorial.***
     
@@ -164,7 +165,7 @@ The example provided below assumes that you are using **`React + Typescript`** a
     
     Great work! Let’s test the button and check for the modal. It should look like this:
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/00f2da57-2c9e-4207-85e5-7e4993e01b10/Untitled.png)
+    ![Site 5](/img/site5.png)
     
     From this point forward everything becomes user experience: your site/app is ready to onboard and log in users through Dippi 🙌
     
