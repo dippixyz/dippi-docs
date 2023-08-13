@@ -17,7 +17,7 @@ The backend API plays a pivotal role in the functionality and success of your ap
 
 ### **The Power of `@dippixyz/sdk`**
 
-One of the core strengths of this backend lies in its integration with the **`@dippixyz/sdk`** library. This sophisticated SDK offers a comprehensive set of tools and functionalities that empower your backend to interact seamlessly with the Dippi platform. By leveraging the capabilities of the **`@dippixyz/sdk`**, your backend gains access to a wealth of features that simplify application management, user authentication, wallet handling, and more.
+One of the core strengths of this backend lies in its integration with the **`@dippixyz/sdk`** library. This SDK offers a comprehensive set of tools and functionalities that empower your backend to interact seamlessly with the Dippi platform. By leveraging the capabilities of the **`@dippixyz/sdk`**, your backend gains access to a wealth of features that simplify application management, user authentication, wallet handling, and more.
 
 The **`@dippixyz/sdk`** library serves as the bridge between your backend and the Dippi ecosystem. It encapsulates intricate processes, allowing you to focus on building an efficient and feature-rich backend without the need to handle intricate details manually. With the power of the SDK, your backend can execute actions smoothly and securely, offering a seamless experience to your users.
 
