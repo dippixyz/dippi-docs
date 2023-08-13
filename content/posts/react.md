@@ -40,7 +40,7 @@ Example:
 
 ![Site 3](/img/site3.png)
 
-IMPORTANT: Once your project is created you’ll obtain an API Token and Application ID: make sure to store these safely —back them up and don’t lose them!
+> ⚠️ IMPORTANT: Once your project is created you’ll obtain an API Token and Application ID: make sure to store these safely —back them up and don’t lose them!
 
 Note: The `API Token`  can’t be recovered if lost. If you ever lose this, you’ll need to generate a new one. To create a new Token follow this guide: {{link}}
 
@@ -169,7 +169,7 @@ The example provided below assumes that you are using **`React + Typescript`** a
     
     From this point forward everything becomes user experience: your site/app is ready to onboard and log in users through Dippi 🙌
     
-    IMPORTANT: The credentials used in this modal ***are NOT*** the ones you used when registering on [client.dippi.xyz](http://client.dippi.xyz/) to create your project. *Again: these are credentials created by the user to be interact with your site.*
+    > ⚠️ IMPORTANT: The credentials used in this modal ***are NOT*** the ones you used when registering on [client.dippi.xyz](http://client.dippi.xyz/) to create your project. *Again: these are credentials created by the user to be interact with your site.*
     
     Please refer to the users’ side of the process in this guide: {{A user’s guide to Dippi}}
     
@@ -209,7 +209,7 @@ In `event.data` you should expect an object like this:
 }
 ```
 
-IMPORTANT: If you are not using the iFrame (instead obtaining a URL through the `DippiClient.auth.getUrl()` method) and get directed to our site, ***the action you will receive in response will be a redirection to a URL with the following structure:***
+> ⚠️ IMPORTANT: If you are not using the iFrame (instead obtaining a URL through the `DippiClient.auth.getUrl()` method) and get directed to our site, ***the action you will receive in response will be a redirection to a URL with the following structure:***
 
 `${returnUrl}/success/${wallet.address}/${userId}`
 
