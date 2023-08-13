@@ -2,6 +2,7 @@
 title: "SDK + React"
 date: 2023-08-11T15:31:44-06:00
 draft: false
+ShowToc: true
 ---
 
 Welcome to your friendly guide to using `@dippixyz/sdk` 🚀. Please [contact us](mail:hello@dippi.xyz) if you face any problems implementing!
@@ -12,7 +13,7 @@ Welcome to your friendly guide to using `@dippixyz/sdk` 🚀. Please [contact us
 2. This SDK can be used both in your backend or your frontend!
 3. Need to keep users in the main site while they signup/sign in? We understand! To enable this for your site and your users we recommend you use the iFrame code provided ahead. Keep in mind you can always choose how to display our site.
 
-**Step 1**
+### Step 1: Getting your API token and Application ID
 
 Go to our site: [client.dippi.xyz](http://client.dippi.xyz/). Once there you must create a project. That project will be loaded with all the necessary configurations to be used as rules when creating wallets for your users.
 
@@ -44,7 +45,7 @@ Example:
 
 Note: The `API Token`  can’t be recovered if lost. If you ever lose this, you’ll need to generate a new one. To create a new Token follow this guide: {{link}}
 
-**Step 2.**
+### Step 2: Installation and the button component
 
 Once your `API Token` and `Application ID` are ready you can start using our SDK.
 
@@ -174,7 +175,7 @@ The example provided below assumes that you are using **`React + Typescript`** a
     Please refer to the users’ side of the process in this guide: {{A user’s guide to Dippi}}
     
 
-**Step 3.**
+### Step 3: Managing Component's response
 
 Now that the component is ready, you’ll manage the response obtained from Dippi once the user is done with the process:
 

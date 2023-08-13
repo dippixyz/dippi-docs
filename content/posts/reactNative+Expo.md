@@ -2,16 +2,14 @@
 title: "SDK + React Native + Expo"
 date: 2023-08-11T15:31:44-06:00
 draft: false
+ShowToc: true
 # cover: 
-#     image: "img/wall.jpg"
+#     image: "/img/wall.jpg"
 #     alt: "This is a photo."
 #     caption: "This is the caption."
 ---
 
-# Documentation ReactNative + Expo: Dippi Sign-in
-
-<!-- # Technical Document: Understanding the React Native Code for Dippi Sign-i -->
-
+<!-- # Documentation ReactNative + Expo: Dippi Sign-in -->
 ## Introduction
 
 This document aims to explain the provided React Native code that implements Dippi sign-in functionality for mobile applications. The code utilizes various libraries and APIs, including React Native, Expo, and the Dippi SDK, to enable users to sign in using their Dippi accounts.
