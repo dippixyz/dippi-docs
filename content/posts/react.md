@@ -4,11 +4,6 @@ date: 2023-08-11T15:31:44-06:00
 draft: false
 ---
 
-
-# SDK ENG TUTORIAL
-
-Hello w0rld!
-
 Welcome to your friendly guide to using `@dippixyz/sdk`. Please {{contact us}} if you face any problems implementing!
 
 **Please note the following frequent issues before you begin:**
