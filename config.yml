@@ -1,7 +1,6 @@
 baseURL: ""
 languageCode: "en-us"
 title: "Dippi"
-icon: "static/img/wall.jpg"
 theme: "PaperMod"
 
 params: 
@@ -10,8 +9,10 @@ params:
 
   homeInfoParams:
     Title: "Dippi Docs"
-    Content: "To generate your API KEY you can register here https://client.dippi.xyz and create your project."
+    Content: "To generate your API KEY you can register here https://client.dippi.xyz and create your project. If you want to give us feedback or leave any comments about our documentation or our products, you can do it here https://github.com/dippixyz/dippi-docs/issues/new"
     
+  label:
+    icon: "img/logo.png"
 
   socialIcons:
     - name: "github"
