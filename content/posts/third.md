@@ -3,6 +3,7 @@ title: "SDK + Node + Express"
 date: 2023-08-10T15:31:44-06:00
 draft: false
 ShowToc: true
+updated: 2023-08-24
 # cover: 
 #     image: "img/wall.jpg"
 #     alt: "This is a photo."
@@ -397,3 +398,24 @@ module.exports = {
 This documentation provides an overview of the backend API routes and their corresponding functionalities, as well as the models responsible for handling various operations. Developers can refer to this documentation to understand how to interact with the backend API, manage users, applications, wallets, authentication, and more, while utilizing the `@dippixyz/sdk` library effectively.
 
 This document provides technical documentation for the backend API of your application. The backend is developed using Node.js and Express framework, and it comprises various routes that handle different functionalities such as user management, wallet operations, application handling, authentication, and more. -->
+
+
+### TokenAccountFunc Model
+
+The `TokenAccountFunc.js` file provides methods to interact with TokenAccountFunc-related operations using the Dippi SDK.
+
+### Method: create
+
+```jsx
+const dippiClient = require('./dippiClient');
+
+const create = async (params) => {
+    const dippi = await dippiClient.init();
+    return await dippi.TokenAccountFunc.create(params);
+}
+
+module.exports = {
+    create,
+};
+
+```
