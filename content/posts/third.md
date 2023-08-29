@@ -34,6 +34,7 @@ The **`@dippixyz/sdk`** library serves as the bridge between your backend and th
     - [Auth Router](notion://www.notion.so/dippi/94e479b4a0db4a6782a4ea94fb2bfeaf?v=5701ff4bdd01486389c0c66d36e7ccb3&p=75d17264668e48e6a61ae9681a8b236c&pm=s#auth-router)
     - [User Router](notion://www.notion.so/dippi/94e479b4a0db4a6782a4ea94fb2bfeaf?v=5701ff4bdd01486389c0c66d36e7ccb3&p=75d17264668e48e6a61ae9681a8b236c&pm=s#user-router)
     - [Wallet Router](notion://www.notion.so/dippi/94e479b4a0db4a6782a4ea94fb2bfeaf?v=5701ff4bdd01486389c0c66d36e7ccb3&p=75d17264668e48e6a61ae9681a8b236c&pm=s#wallet-router)
+    - [TokenBoundAccount Router](notion://www.notion.so/dippi/94e479b4a0db4a6782a4ea94fb2bfeaf?v=5701ff4bdd01486389c0c66d36e7ccb3&p=75d17264668e48e6a61ae9681a8b236c&pm=s#tokenBoundAccount-router)
 - [Models](notion://www.notion.so/dippi/94e479b4a0db4a6782a4ea94fb2bfeaf?v=5701ff4bdd01486389c0c66d36e7ccb3&p=75d17264668e48e6a61ae9681a8b236c&pm=s#models)
 
 ## Introduction
@@ -80,6 +81,12 @@ The `wallet-router.js` manages wallet operations.
 - `POST /dippi/wallet/recovery/:id`: Recover wallet by ID.
 - `GET /dippi/wallet/balance/:id`: Get wallet balance by ID.
 - `GET /dippi/wallet/nfts/:id`: Get NFTs associated with a wallet by ID.
+
+### TokenBoundAccount Router
+
+The `tokenBoundAccount-router.js` manages wallet operations.
+
+- `POST /dippi/tokenBoundAccount/create/:data`: Recover TBA by ID.
 
 ## Models
 
@@ -400,22 +407,21 @@ This documentation provides an overview of the backend API routes and their corr
 This document provides technical documentation for the backend API of your application. The backend is developed using Node.js and Express framework, and it comprises various routes that handle different functionalities such as user management, wallet operations, application handling, authentication, and more. -->
 
 
-### TokenAccountFunc Model
+### tokenBoundAccount Model
 
-The `TokenAccountFunc.js` file provides methods to interact with TokenAccountFunc-related operations using the Dippi SDK.
+The `tokenBoundAccount.js` file provides methods to interact with tokenBoundAccount-related operations using the Dippi SDK.
 
 ### Method: create
 
 ```jsx
-const dippiClient = require('./dippiClient');
+const TBA = require('@dippixyz/sdk');
 
-const create = async (params) => {
-    const dippi = await dippiClient.init();
-    return await dippi.TokenAccountFunc.create(params);
+const create = async (data) => {
+    const TBAClient = new TBA(paramsOauthSession);
+    TBAClient.init(tbaCreateOptions)
+    return await TBAClient.create();
 }
 
 module.exports = {
     create,
 };
-
-```
